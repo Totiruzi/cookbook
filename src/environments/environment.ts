@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseAPIKey: 'AIzaSyCw23ujjWWTy-xa5ExCGKwR4wWgEvCaqH8'
+  firebaseAPIKey: 'add Web API Key from Recipe-book on firebase'
 };
 
 /*
