@@ -12,8 +12,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
-  private recipeChangeSubscribtion: Subscription;
-  recipes: Recipe[] ;
+  recipeChangeSubscribtion: Subscription;
+  recipes: Recipe[];
   constructor( private router: Router,
                private route: ActivatedRoute,
                private store: Store<fromApp.AppState>) {}

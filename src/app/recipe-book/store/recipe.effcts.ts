@@ -12,7 +12,7 @@ export class RecipeEffects {
   @Effect()
   fetchRecips = this.actions$.pipe(
     ofType(RecipesActions.FETCH_RECIPES),
-    switchMap(fetchAction => {
+    switchMap(() => {
       return this.http.get<Recipe[]>('https://recipe-book-f649e.firebaseio.com/recipes.json');
     }),
     map(recipes => {
@@ -31,7 +31,7 @@ export class RecipeEffects {
     withLatestFrom(this.store.select('recipes')),
     switchMap(([actionData, recipesState]) => {
       return this.http
-      .put('https://recipe-book-f649e.firebaseio.com/recipes.json', recipesState.recipes)
+      .put('https://recipe-book-f649e.firebaseio.com/recipes.json', recipesState.recipes);
     })
     );
   constructor(private actions$: Actions,

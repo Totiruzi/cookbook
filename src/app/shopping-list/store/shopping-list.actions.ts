@@ -1,7 +1,7 @@
-import { Ingredient } from './../../shared/ingredient.model';
+import { Ingredient } from '../../shared/ingredient.model';
 import { Action } from '@ngrx/store';
 
-export const ADD_INGREDIENT = '[Shoppind List]Add Ingredient';
+export const ADD_INGREDIENT = '[Shopping List]Add Ingredient';
 export const ADD_INGREDIENTS = '[Shopping List] Add Ingredients';
 export const UPDATE_INGREDIENT = '[Shopping List] Update Ingredient';
 export const DELETE_INGREDIENT = '[Shopping List] Delete Ingredient';

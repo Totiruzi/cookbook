@@ -7,9 +7,9 @@ export interface State {
   editedIngredientIndex: number;
 }
 
-export interface AppState {
-  shoppingList: State;
-}
+// export interface AppState {
+//   shoppingList: State;
+// }
 const initialState: State = {
   ingredients: [
     new Ingredient('Tomatoes', 6),
@@ -34,19 +34,21 @@ export function shoppingListReducer(
           ...state,
           ingredients: [...state.ingredients, ...action.payload]
         };
-    case ShoppingListActions.UPDATE_INGREDIENT :
-      const ingredient = state.ingredients[state.editedIngredientIndex];
-      const updateIngredient = {
-        ...ingredient, ...action.payload
-      };
-      const updatedIngredients = [...state.ingredients];
-      updatedIngredients[state.editedIngredientIndex] = updateIngredient;
-      return{
-        ...state,
-        ingredients: updatedIngredients,
-        editedIngredientIndex: -1,
-        editedIngredient: null
-      };
+        case ShoppingListActions.UPDATE_INGREDIENT:
+          const ingredient = state.ingredients[state.editedIngredientIndex];
+          const updatedIngredient = {
+            ...ingredient,
+            ...action.payload
+          };
+          const updatedIngredients = [...state.ingredients];
+          updatedIngredients[state.editedIngredientIndex] = updatedIngredient;
+
+          return {
+            ...state,
+            ingredients: updatedIngredients,
+            editedIngredientIndex: -1,
+            editedIngredient: null
+          };
 
     case ShoppingListActions.DELETE_INGREDIENT :
       return {

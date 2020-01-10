@@ -1,4 +1,4 @@
-import { UserModel } from './../user.model';
+import { UserModel } from '../user.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -22,12 +22,11 @@ const handleAuthentication = (expiresIn: number, email: string, userId: string, 
   const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
   const user = new UserModel(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
-
   return new AuthActions.AuthenticateSuccess({
-            email,
-            userId,
-            token,
-            expirationDate,
+            email: email,
+            userId: userId,
+            token: token,
+            expirationDate: expirationDate,
             redirect: true
           });
 };
@@ -135,7 +134,7 @@ export class AuthEffects {
       id: string;
       _token: string;
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userDaat'));
+    } = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
       return { type: 'DUMMY'};
     }

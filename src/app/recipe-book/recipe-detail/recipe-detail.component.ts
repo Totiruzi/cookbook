@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { RecipeService } from './../recipe.service';
-import { Recipe } from './../recipe.model';
+import { Recipe } from '../recipe.model';
 import * as fromApp from '../../store/app.reducer';
 import { map, switchMap } from 'rxjs/operators';
 import * as RecipesActions from '../store/recipe.actions';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -16,15 +16,14 @@ export class RecipeDetailComponent implements OnInit {
   openDropdown = false;
   recipe: Recipe;
   id: number;
-  constructor(
-    private recipeService: RecipeService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {
-    this.route.params.pipe(map(params => {
+    this.route.params.pipe(
+      map(params => {
       return +params['id'];
     }), switchMap(id => {
       this.id = id;
@@ -41,7 +40,8 @@ export class RecipeDetailComponent implements OnInit {
       });
   }
   onAddToShoppingList() {
-    this.recipeService.addIngreientToShoppingList(this.recipe.ingredients);
+    // this.recipeService.addIngreientToShoppingList(this.recipe.ingredients);
+    this.store.dispatch(new ShoppingListActions.AddIngredients(this.recipe.ingredients));
   }
   onEditRecipe() {
     this.router.navigate(['edit'], {relativeTo: this.route});
